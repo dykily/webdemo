@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title>css3d造物节Demo</title>
+    
+    <script src="http://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+    <style>
+        body{
+            background-image: url('../img/bg.jpg')
+        }
+
+        .container{
+            margin: 0 auto 0 auto;
+            width: 8.0625rem;
+            perspective: 25rem;
+        }
+
+        #box{
+            -webkit-transform-style: preserve-3d;
+            height: 100%;
+            -webkit-perspective-origin: 50% 50%;
+        }
+
+        #box > div{
+            position: absolute;
+            width: 8.0625rem;
+            height: 73.125rem;
+            
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="container" class="container">
+        <div id='box'>
+            <div>0</div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>14</div>
+            <div>15</div>
+            <div>16</div>
+            <div>17</div>
+            <div>18</div>
+            <div>19</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var container = document.getElementById('container');
+        var box = document.getElementById('box');//获取盒子
+        var arr = box.getElementsByTagName('div');//获取需要拼接的div
+        var radius = calculateRadius(129, 20);//计算Z轴需要的位移
+
+        for (var i = 0; i < arr.length; i++) {//给div赋值 背景图片
+            arr[i].style.background = 'url("./img/p' + (i + 1) + '.png") no-repeat';
+            arr[i].style.WebkitTransform = "rotateY(" + 360 / arr.length * i + 'deg) translatez(' + radius + 'px)';
+        }
+
+        /**
+         * 通过三角函数计算出距离
+         * @param {素材宽度} length 
+         * @param {素材总数} totalNum 
+         */
+        function calculateRadius(length, totalNum) {
+            return Math.round(length / (2 * Math.tan(Math.PI / totalNum))) - 3;
+        }
+
+
+        var startX = 0,//开始时的坐标
+            x = 0,//旋转的差值
+            endX = 0;//手离开时候的坐标
+        var flag = true;//区分 手触摸 还是 陀螺仪
+        //手开始触碰时的监听
+        $('#box').on('touchstart', function(event) {
+            event.preventDefault();
+            var touch = event.targetTouches[0];//触碰的范围会返回很多坐标点 取第一个即可
+            startX = touch.pageX - x;//记录手开始触碰时的 X坐标，由于我们是左右移动只要记录X就行了
+        })
+        //手移动时的监听
+        $('#box').on('touchmove', function(event) {
+            if (flag) {
+                event.preventDefault();
+                var touch = event.targetTouches[0];
+                endX = touch.pageX;
+                x = endX - startX;//在移动中 用 endX与startX相减就得到 差值，box旋转差值即可
+                box.style.transform = 'rotateY(' + x + 'deg)';
+            } else {
+                return false;
+            }
+
+        })
+        //手离开屏幕时的监听
+        $('#box').on('touchend', function(event) {
+            console.log("over");
+        });
+
+
+        window.addEventListener('deviceorientation', function(event) {
+
+            var gamma = event.gamma;
+            if (Math.abs(gamma) > 1) {
+                flag = false;
+                box.style.transform = 'rotateY(' + gamma * 3 + 'deg)';
+            } else {
+                flag = true;
+            }
+
+        })
+    </script>
+</body>
+
+</html>
