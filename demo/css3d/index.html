@@ -107,19 +107,19 @@
         $('#box').on('touchend', function(event) {
             console.log("over");
         });
+    
 
+        // window.addEventListener('deviceorientation', function(event) {
 
-        window.addEventListener('deviceorientation', function(event) {
+        //     var gamma = event.gamma;
+        //     if (Math.abs(gamma) > 1) {
+        //         flag = false;
+        //         box.style.transform = 'rotateY(' + gamma * 3 + 'deg)';
+        //     } else {
+        //         flag = true;
+        //     }
 
-            var gamma = event.gamma;
-            if (Math.abs(gamma) > 1) {
-                flag = false;
-                box.style.transform = 'rotateY(' + gamma * 3 + 'deg)';
-            } else {
-                flag = true;
-            }
-
-        })
+        // })
     </script>
 </body>
 
