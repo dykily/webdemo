@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css渐变--伞</title>
+    <style>
+        .box { 
+            font-size: 10px; outline: 1px solid #aaa; width: 200px; height: 200px;
+            background:
+            radial-gradient(100% 200% at 50% 100%, pink 50%, transparent 50.25%) 50% 15px / 50px 120px, 
+            radial-gradient(100% 200% at 50% 100%, gray 50%, transparent 50.25%) 50% 15px / 100px 120px, 
+            radial-gradient(100% 200% at 50% 100%, blue 50%, transparent 50.25%) 50% 15px / 150px 120px,
+            linear-gradient(90deg, green 50%, transparent 50%) 95px 15px / 10px 200px;
+            background-repeat: no-repeat;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="box">
+    </div>
+    
+</body>
+</html>
+
