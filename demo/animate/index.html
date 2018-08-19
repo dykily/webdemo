@@ -10,12 +10,11 @@
         const width = oHtml.clientWidth;
         // 320px的屏幕基准像素为12px
         oHtml.style.fontSize = 12 * (width / 320) + "px";
-        oHtml.style.height = window.screen.height + "px";
+        // oHtml.style.height = window.screen.clientHeight + "px";
         
     </script>
     <style>
         body{
-            height: 100%;
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -23,16 +22,16 @@
         .list{
             text-align: center;
             width: 100%;
-            height: 100%;
+            /* height: 100%; */
             overflow: hidden;
-            padding-top: 5%;
+            padding-top: 15%;
             box-sizing: border-box;
         }
         .list .item{
             width: 18rem;
             height: 9rem;
             border-radius: 4px;
-            background: blueviolet;
+            background:darkcyan;
             margin-bottom: 1rem;
             display: inline-block;
             transition: all .2s cubic-bezier(0, .64, .28, .96);
@@ -90,7 +89,7 @@
                 }
             } 
             item.style.width = "22rem";
-            item.style.height = "90%";
+            item.style.height = "40rem";
             back.style.display = "inline-block";
         })
     }
