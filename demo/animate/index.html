@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        const oHtml = document.getElementsByTagName('html')[0]
+        const width = oHtml.clientWidth;
+        // 320px的屏幕基准像素为12px
+        oHtml.style.fontSize = 12 * (width / 320) + "px";
+        oHtml.style.height = window.screen.height + "px";
+        
+    </script>
+    <style>
+        body{
+            height: 100%;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .list{
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            padding-top: 4rem;
+            box-sizing: border-box;
+        }
+        .list .item{
+            width: 18rem;
+            height: 9rem;
+            border-radius: 4px;
+            background: pink;
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: all .2s cubic-bezier(0, .64, .28, .96);
+        }
+        .back{
+            position: fixed;
+            left: 1rem;
+            top: 1rem;
+            color: blue;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <span class="back" id="back">返回</span>
+    <div class="list" id="list">
+
+        <div class="item" data-idx="0"></div>
+        <div class="item" data-idx="1"></div>
+        <div class="item" data-idx="2"></div>
+        <div class="item" data-idx="3"></div>
+
+    </div>
+</body>
+
+<script>
+    var items = document.querySelectorAll(".item");
+    var back = document.querySelector("#back");
+    var idx;
+    console.log(items);
+    for(let item of items){
+        item.addEventListener("touchend", function(e){
+            item.classList.add("show");
+            console.log(e);
+            idx = e.target.dataset.idx;
+            for(let oItem of items){
+                if(idx != oItem.dataset.idx){
+                    if(idx > oItem.dataset.idx){
+
+                        oItem.style.WebkitTransform = "translatey(-100rem)";
+                    }else{
+                        oItem.style.WebkitTransform = "translatey(100rem)";
+                    }
+                    oItem.style.display = "none";
+                }else{
+                    
+                }
+            } 
+            item.style.width = "22rem";
+            item.style.height = "40rem";
+        })
+    }
+    back.addEventListener("touchend", function(){
+        if(!idx){
+            return;
+        }
+        for(let item of items){
+            item.style.display = "inline-block";
+            if(idx > item.dataset.idx){
+                
+                setTimeout(function(){
+                    item.style.WebkitTransform = "translatey(10px)";
+                },150)
+                setTimeout(function(){
+                    item.style.WebkitTransform = "translatey(-10px)";
+                },400)
+                setTimeout(function(){
+                    item.style.WebkitTransform = "translatey(0rem)";
+                },600)
+            }else if(idx < item.dataset.idx){
+                setTimeout(function(){
+                    item.style.WebkitTransform = "translatey(-10px)";
+                },150)
+                setTimeout(function(){
+                    item.style.WebkitTransform = "translatey(10px)";
+                },400)
+                setTimeout(function(){
+                    item.style.WebkitTransform = "translatey(0rem)";
+                },600)
+            }else{
+                item.style.WebkitTransform = "translatey(0)";
+                item.style.width = "18rem";
+                item.style.height = "9rem";
+                
+            }
+            
+            
+            
+        }    
+        idx = "";
+    
+    })
+</script>
+</html>
