@@ -9,9 +9,26 @@
 <body>
     
 </body>
-<script src="./system.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script src="system.js"></script>
 <script>
-    var btn = new PraiseButton();
-    var btn2 = new Thumb();
+    SystemJS.import('./praise_button.js').then(function(mod){
+        $.extend({  
+            PraiseButton: function(){
+                return new mod.PraiseButton();
+            },
+            Thumb: function(){
+                return new mod.Thumb();
+            },
+        });
+        
+        $.PraiseButton();
+        $.Thumb();
+    });
+
+    
+    
+</script>
+<script>
 </script>
 </html>
