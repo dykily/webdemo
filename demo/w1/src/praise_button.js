@@ -65,7 +65,7 @@
         };
     }();
 
-    var PraiseButton = function () {
+    var PraiseButton = exports.PraiseButton = function () {
         function PraiseButton() {
             _classCallCheck(this, PraiseButton);
 
@@ -88,7 +88,7 @@
             key: "renderBtn",
             value: function renderBtn() {
                 var ctx = this;
-                ctx.praiseBtn.innerHTML = "点赞->" + ctx.count;
+                ctx.praiseBtn.innerHTML = "点赞" + ctx.count;
                 document.body.appendChild(ctx.praiseBtn);
                 ctx.praiseBtn.addEventListener('click', function () {
                     ctx.praise();
@@ -98,7 +98,7 @@
             key: "praise",
             value: function praise() {
                 var ctx = this;
-                ctx.praiseBtn.innerHTML = "点赞->" + ++ctx.count;
+                ctx.praiseBtn.innerHTML = "点赞" + ++ctx.count;
                 return ctx.count;
             }
         }]);
@@ -106,7 +106,7 @@
         return PraiseButton;
     }();
 
-    var Thumb = function (_PraiseButton) {
+    var Thumb = exports.Thumb = function (_PraiseButton) {
         _inherits(Thumb, _PraiseButton);
 
         function Thumb() {
@@ -123,7 +123,7 @@
             key: "renderBtn",
             value: function renderBtn() {
                 var ctx = this;
-                ctx.praiseBtn.innerHTML = "大拇指->" + ctx.count;
+                ctx.praiseBtn.innerHTML = "大拇指" + ctx.count;
                 document.body.appendChild(ctx.praiseBtn);
                 ctx.praiseBtn.addEventListener('click', function () {
                     ctx.praise();
@@ -133,7 +133,7 @@
             key: "praise",
             value: function praise() {
                 var ctx = this;
-                ctx.praiseBtn.innerHTML = this.praiseType + "->" + ++ctx.count;
+                ctx.praiseBtn.innerHTML = this.praiseType + ++ctx.count;
                 return ctx.count;
             }
         }, {
@@ -145,7 +145,4 @@
 
         return Thumb;
     }(PraiseButton);
-
-    exports.PraiseButton = PraiseButton;
-    exports.Thumb = Thumb;
 });
