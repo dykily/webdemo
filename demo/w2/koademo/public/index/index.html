@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>koa demo</title>
+</head>
+<body>
+    
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script src="axios.min.js"></script>
+<script src="praise_button_es6.js"></script>
+<script>
+    // SystemJS.import('./praise_button_es6.js').then(function(mod){
+    //     $.extend({  
+    //         PraiseButton: function(){
+    //             return new mod.PraiseButton();
+    //         },
+    //         Thumb: function(){
+    //             return new mod.Thumb();
+    //         },
+    //     });
+        
+    //     $.PraiseButton();
+    //     $.Thumb();
+    // });
+
+     $.extend({  
+            Thumb: function(){
+                return new Thumb();
+            },
+        });
+        
+        $.Thumb();
+    
+</script>
+<script>
+</script>
+</html>
