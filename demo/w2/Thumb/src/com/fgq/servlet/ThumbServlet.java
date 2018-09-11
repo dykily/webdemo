@@ -25,7 +25,7 @@ public class ThumbServlet extends HttpServlet {
         
         System.out.println(methodName == "addThumb");
 		
-		
+		//数据库基本配置
 		String driver = "com.mysql.cj.jdbc.Driver";
 	    String url = "jdbc:mysql://localhost:3306/mydemo?useUnicode=true&serverTimezone=GMT&characterEncoding=utf8&useSSL=false";
 	    String username = "root";
@@ -37,8 +37,10 @@ public class ThumbServlet extends HttpServlet {
 	        Class.forName(driver); //classLoader,加载对应驱动
 	        conn = (Connection) DriverManager.getConnection(url, username, password);
 	        if(methodName.equals("addThumb")) {
+	        	//点赞+1
 	        	addThumb(conn,req,resp);
 	        }else if(methodName.equals("thumb")) {
+	        	//查询点赞数
 	        	thumb(conn,req,resp);
 	        }
 	        
@@ -58,6 +60,13 @@ public class ThumbServlet extends HttpServlet {
 		
 	}
 	
+	/**
+	 * 点赞+1接口
+	 * @param conn 数据库连接
+	 * @param req http请求
+	 * @param resp http相应
+	 * @throws SQLException sql异常
+	 */
 	protected void addThumb(Connection conn,HttpServletRequest req, HttpServletResponse resp) throws SQLException {
 		resp.setHeader("Content-Type", "text/json;charset=utf-8;"); 
 		PreparedStatement pstmt = null;
@@ -67,19 +76,22 @@ public class ThumbServlet extends HttpServlet {
 			
 			out = resp.getWriter();
 			pstmt = (PreparedStatement)conn.prepareStatement(sql);
+			//查询的结果集
 	        ResultSet rs = pstmt.executeQuery();
 	        int count = 0;
 	        System.out.println(rs);
+	        //遍历结果集
 	        while (rs.next()) {
 	            
 	        	count = rs.getInt("count");
 	            System.out.println(rs.getInt("id")+" --- " + count);
 	        }
 	        String addSql = "update t_js SET count='"+(++count)+"' WHERE id=1";
+	        
 	        pstmt = (PreparedStatement) conn.prepareStatement(addSql);
-	        int sucCol = pstmt.executeUpdate();
+	        int sucCol = pstmt.executeUpdate();//执行点赞+1 sql语句
 	        
-	        
+	        //返回查询数据
 			out.println("{\"ret\":0,\"msg\":\"success\",\"action\":\"add\",\"count\":"+count+"}");
 			pstmt.close();
 	        conn.close();
@@ -90,25 +102,34 @@ public class ThumbServlet extends HttpServlet {
 	        conn.close();
 	    }
 	}
+	/**
+	 * 查询点赞总数接口
+	 * @param conn 数据库连接
+	 * @param req http请求
+	 * @param resp http相应
+	 * @throws SQLException sql异常
+	 */
 	protected void thumb(Connection conn,HttpServletRequest req, HttpServletResponse resp) throws SQLException {
 		resp.setHeader("Content-Type", "text/json;charset=utf-8;"); 
 		PreparedStatement pstmt = null;
-		String sql = "select * from t_js where id = 1";
+		String sql = "select * from t_js where id = 1";//写死一个条件 id == 1
 		PrintWriter out = null;
 		try {
 			out = resp.getWriter();
 			
 			pstmt = (PreparedStatement)conn.prepareStatement(sql);
+			//结果集
 	        ResultSet rs = pstmt.executeQuery();
 	        int count = 0;
 	        System.out.println(rs);
+	        //遍历结果集
 	        while (rs.next()) {
 	            
 	        	count = rs.getInt("count");
 	            System.out.println(rs.getInt("id")+" --- " + count);
 	        }
 	        
-	         
+	        //返回 点赞完成后的数据
 			out.println("{\"ret\":0,\"msg\":\"success\",\"action\":\"query\",\"count\":"+count+"}");
 			pstmt.close();
 	        conn.close();
