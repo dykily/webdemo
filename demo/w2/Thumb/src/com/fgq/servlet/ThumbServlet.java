@@ -22,7 +22,6 @@ public class ThumbServlet extends HttpServlet {
         String uri = req.getRequestURI();
         // 截取其中的方法名
         String methodName = uri.substring(uri.lastIndexOf("/")+1, uri.lastIndexOf("."));
-        
         System.out.println(methodName == "addThumb");
 		
 		//数据库基本配置
@@ -82,12 +81,9 @@ public class ThumbServlet extends HttpServlet {
 	        System.out.println(rs);
 	        //遍历结果集
 	        while (rs.next()) {
-	            
 	        	count = rs.getInt("count");
-	            System.out.println(rs.getInt("id")+" --- " + count);
 	        }
 	        String addSql = "update t_js SET count='"+(++count)+"' WHERE id=1";
-	        
 	        pstmt = (PreparedStatement) conn.prepareStatement(addSql);
 	        int sucCol = pstmt.executeUpdate();//执行点赞+1 sql语句
 	        
@@ -116,7 +112,6 @@ public class ThumbServlet extends HttpServlet {
 		PrintWriter out = null;
 		try {
 			out = resp.getWriter();
-			
 			pstmt = (PreparedStatement)conn.prepareStatement(sql);
 			//结果集
 	        ResultSet rs = pstmt.executeQuery();
@@ -124,9 +119,7 @@ public class ThumbServlet extends HttpServlet {
 	        System.out.println(rs);
 	        //遍历结果集
 	        while (rs.next()) {
-	            
 	        	count = rs.getInt("count");
-	            System.out.println(rs.getInt("id")+" --- " + count);
 	        }
 	        
 	        //返回 点赞完成后的数据
