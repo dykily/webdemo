@@ -1,0 +1,21 @@
+body, html{
+    padding: 0;
+    margin: 0;
+    background: #332244;
+}
+.test{
+    display: flex;
+    background: #409eff;
+
+
+
+}
+button{
+    background-color: #409eff;
+    color: #fff;
+    border-radius: 4px;
+    border: #409eff;
+    padding: 8px 12px;
+    margin: 20px;
+    outline: none;
+}

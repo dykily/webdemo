@@ -1,0 +1,97 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2018-09-10T12:55:22.268Z",
+    "end": "2018-09-10T12:55:22.445Z",
+    "duration": 177,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "95c7fbf9-6bb3-48fc-847f-97295d752234",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "045d8d35-508d-4c04-bbe1-4151dd25d9d7",
+        "title": "node接口测试",
+        "fullFile": "/Users/fengguanqin/program/study/webjinjie/week2/koademo/test/api.spec.js",
+        "file": "/test/api.spec.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "测试查询点赞数量接口",
+            "fullTitle": "node接口测试 测试查询点赞数量接口",
+            "timedOut": false,
+            "duration": 40,
+            "state": "passed",
+            "speed": "medium",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "request()\n.get(\"/thumb\")\n.expect(\"Content-Type\",/json/)\n.expect(200)\n.end(function(err,res){\n    console.log(res);\n    \n    if(0 == res.body.ret){//返回 0 代表成功\n        console.log(\"查询成功\");\n        \n        done();\n    }else{\n        done(err);\n    }\n})",
+            "err": {},
+            "isRoot": false,
+            "uuid": "65173351-78fe-4e4a-b02e-a2d3ce7f327d",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "测试点赞+1接口",
+            "fullTitle": "node接口测试 测试点赞+1接口",
+            "timedOut": false,
+            "duration": 120,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "request()\n.get(\"/addThumb\")\n.expect(\"Content-Type\",/json/)\n.expect(200)\n.end(function(err,res){\n    console.log(res);\n    \n    if(0 == res.body.ret){//返回 0 代表成功\n        console.log(\"点赞成功\");\n        done();\n    }else{\n        done(err);\n    }\n})",
+            "err": {},
+            "isRoot": false,
+            "uuid": "b0117ae1-82bd-4b51-b768-753dd55c0f94",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "65173351-78fe-4e4a-b02e-a2d3ce7f327d",
+          "b0117ae1-82bd-4b51-b768-753dd55c0f94"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 160,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 2000
+  },
+  "copyrightYear": 2018
+}
